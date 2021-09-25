@@ -14,5 +14,6 @@
 Bạn xem kĩ tại trang: https://kb2ateam.github.io/kb2abot-docs/ <br>
 Sau khi cài đặt xong, lúc này bot vẫn chưa có nhiều plugin nên các bạn vào trang http://bit.ly/kb2abot tìm tải các plugin mà bạn muốn về folder /main/deploy/plugins nhé!
 # CẢM ƠN CÁC BẠN ĐÃ SỬ DỤNG KB2ABOT 
-Total income (donating): 360,000 vnđ 🔥<br>
-Cảm ơn mọi người rất nhiều!
+<h1 align="center">
+	<a href="#"><img src="https://drive.google.com/u/0/uc?id=1KHNR2kHStj48I103djKfNfzxlDWe6nqH&export=download" alt="kb2ateam"></a>
+</h1>
