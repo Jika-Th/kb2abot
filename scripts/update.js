@@ -8,7 +8,7 @@ const {execShellCommand} = require('../main/deploy/helpers/common');
 	const initResult = await git.init();
 	console.log('Initing git remote . . .');
 	if (!initResult.existing) {
-		await git.addRemote('origin', 'https://github.com/kb2ateam/kb2abot');
+		await git.addRemote('origin', 'https://github.com/Citnut/kb2abotpro');
 	}
 	const {dependencies} = require('../package.json');
 
@@ -30,6 +30,6 @@ const {execShellCommand} = require('../main/deploy/helpers/common');
 	);
 	console.log('Updating new dependencies . . .');
 	await execShellCommand('npm install');
-	console.log('Updating kb2abot-cli . . .');
-	await execShellCommand('npm i kb2abot-cli@latest -g');
+	//console.log('Updating kb2abot-cli . . .');
+	//await execShellCommand('npm i kb2abot-cli@latest -g');
 })();
