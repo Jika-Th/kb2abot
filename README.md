@@ -17,6 +17,7 @@ Sau khi cài đặt xong, lúc này bot vẫn chưa có nhiều plugin nên các
 <h1 align="center">
 	<a href="https://github.com/kb2ateam/kb2abot">click here</a>
 </h1>
+
 # CẢM ƠN CÁC BẠN ĐÃ SỬ DỤNG KB2ABOT 
 <h1 align="center">
 	<a href="#"><img src="https://drive.google.com/u/0/uc?id=1KHNR2kHStj48I103djKfNfzxlDWe6nqH&export=download" alt="kb2ateam"></a>
