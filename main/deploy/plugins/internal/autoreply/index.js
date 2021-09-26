@@ -37,7 +37,7 @@ module.exports = {
 	async onMessage(message, reply) {
 		const {local} = this.storage.thread;
 		if (local.engine != 'off')
-			botengines[this.storage.thread.local.engine](message, reply);
+			botengines[this.storage.thread.local.engine](message, reply, fca);
 	},
 
 	async onCall(message, reply) {

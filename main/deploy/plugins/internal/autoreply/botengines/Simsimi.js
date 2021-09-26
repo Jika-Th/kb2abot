@@ -1,9 +1,8 @@
 const axios = require('axios');
 
-module.exports = async (message, reply) => {
-	const res = await axios({
-		url: `https://api.simsimi.net/v2/?text=${encodeURI(message.body)}&lc=vi`,
-		method: 'GET'
-	});
-	reply(res.data.success);
+module.exports = async (message, reply, fca) => {
+	if (message.senderID != fca.getCurrentUserID()) {
+		const res = await axios.get(`https://api.simsimi.net/v2/?text=${encodeURI(message.body)}&lc=vi`);
+		reply(res.data.success)
+	}
 };
