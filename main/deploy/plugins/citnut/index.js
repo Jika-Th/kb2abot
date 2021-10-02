@@ -43,7 +43,8 @@ const childs = [
 	'noprefix/he',
 	'noprefix/thunglung',
 	'noprefix/uwu',
-	'noprefix/congiap'
+	'noprefix/congiap',
+	'noprefix/oibanoi'
 ];
 
 module.exports = {
