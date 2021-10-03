@@ -122,11 +122,11 @@ module.exports = {
 				if (typeof setxu == "number") {
 					if (message.body.includes("me") == true) {
 						storage.xu[message.senderID] = setxu;
-						fca.sendMessage(`ví của bạn đã được đặt số dư thành ${storage.xu[message.senderID]} xu`, message.threadID, message.messageID)
+						fca.sendMessage(`ví của bạn đã được đặt số dư thành ${storage.xu[message.senderID]} 💵`, message.threadID, message.messageID)
 					}else if (id != undefined) {
 						storage.xu[id] = setxu;
 						fca.sendMessage({
-							body: `ví của ${name} đã được đặt số dư thành ${storage.xu[id]} xu`,
+							body: `ví của ${name} đã được đặt số dư thành ${storage.xu[id]} 💵`,
 							mentions: [{
 								tag: name,
 								id: id
@@ -142,11 +142,11 @@ module.exports = {
 				if (typeof congxu == "number") {
 					if (message.body.includes("me") == true) {
 						storage.xu[message.senderID] += congxu;
-						fca.sendMessage(`ví của bạn đã được cộng thêm ${congxu} xu`, message.threadID, message.messageID)
+						fca.sendMessage(`ví của bạn đã được cộng thêm ${congxu} 💵`, message.threadID, message.messageID)
 					}else if (id != undefined) {
 						storage.xu[id] += congxu;
 						fca.sendMessage({
-							body: `ví của ${name} đã được cộng thêm ${congxu} xu`,
+							body: `ví của ${name} đã được cộng thêm ${congxu} 💵`,
 							mentions: [{
 								tag: name,
 								id: id

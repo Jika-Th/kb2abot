@@ -40,11 +40,7 @@ module.exports = {
 				const res = await axios.get("https://raw.githubusercontent.com/Citnut/Citnut/main/KB2Abotdata-pluginTrade.json");
 				let name = res.data[`id${id}`].item;
 				let price = res.data[`id${id}`].price;
-				let req = "";
-				let _func = "";
-				let m = "";
-				let dame = "";
-				let db = "";
+				let req = _func = m = dame = db = "";
 				let msg = `thông tin item:\n`;
 
 				if (res.data[`id${id}`].req == "id 13212") {
@@ -69,27 +65,27 @@ module.exports = {
 
 				if (_func == "gây sát thương lên nạn nhân") {
 					msg += ` + tên: ${name}\n`;
-					msg += ` + giá bán: ${price} xu\n`;
+					msg += ` + giá bán: ${price} 💵\n`;
 					msg += ` + sử dụng: ${req}\n`;
 					msg += ` + sát thương: ${dame}`
 				};
 				if (_func == "hồi phục cho bản thân") {
 					msg += ` + tên: ${name}\n`;
-					msg += ` + giá bán: ${price} xu\n`;
+					msg += ` + giá bán: ${price} 💵\n`;
 					msg += ` + tác dụng: hồi phục ${m}HP <3`
 				};
 				if (_func == "chống đạn") {
 					msg += ` + tên: ${name}\n`;
-					msg += ` + giá bán: ${price} xu\n`;
+					msg += ` + giá bán: ${price} 💵\n`;
 					msg += ` + độ bền tối đa: ${db}\n`;
 					msg += ` + tác dụng: miễn giảm ${m} sát thương`
 				};
 				if (_func == "use") {
 					msg += ` + tên: ${name}\n`;
-					msg += ` + giá bán: ${price} xu\n`;
+					msg += ` + giá bán: ${price} 💵\n`;
 					msg += ` + tác dụng: nạp đạn cho ${req}`
 				};
-				reply(msg, message.threadID, message.messageID)
+				reply(msg)
 
 			};
 			if (input == "") { reply(`để xem chi tiết về item nào đó sử dụng: ${prefix}item <item_id>`)

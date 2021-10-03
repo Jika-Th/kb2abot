@@ -69,7 +69,7 @@ module.exports = {
 				slut[message.senderID] = time.getTime();
 				let payout = round(random(data.slut.min, data.slut.max), 0);
 				storage.xu[message.senderID] += payout;
-				rep(`| +${payout} xu | ví của bạn có: ${storage.xu[message.senderID]} xu`)
+				rep(`| +${payout} 💵 | ví của bạn có: ${storage.xu[message.senderID]} 💵`)
 			}
 		}
 	}

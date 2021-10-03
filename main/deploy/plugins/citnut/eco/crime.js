@@ -66,16 +66,16 @@ module.exports = {
 			if (time.getTime() < crime[message.senderID] + (data.cooldown.crime * 1000)) {
 				let cooldown = (crime[message.senderID] + (data.cooldown.crime * 1000)) - time.getTime();
 				rep(`vui lòng đợi ${round((cooldown/1000), 0)} giây để tiếp tục`)
-			}else if (5 < round(random(0, 10), 1) < 6){
+			}else if (5 < round(random(0, 10), 0) < 6){
 				crime[message.senderID] = time.getTime();
 				let payout = round(random(data.crime.min, data.crime.max), 0);
 				storage.xu[message.senderID] += payout;
-				rep(`| +${payout} xu | ví của bạn có: ${storage.xu[message.senderID]} xu`)
+				rep(`| +${payout} xu | ví của bạn có: ${storage.xu[message.senderID]} 💵`)
 			}else {
 				crime[message.senderID] = time.getTime();
 				let lose = round(random(data.crime.lose[0], data.crime.lose[1]), 0);
 				storage.xu[message.senderID] -= lose;
-				rep(`bạn đã bị công an bắt và phải nộp phạt ${lose} xu`)
+				rep(`bạn đã bị công an bắt và phải nộp phạt ${lose} 💵`)
 			}
 		}
 	}

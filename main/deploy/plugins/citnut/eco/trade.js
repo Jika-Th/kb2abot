@@ -111,21 +111,21 @@ module.exports = {
 						xu[message.senderID] -= (a.price);
 						bag["id5414"] += a.amount;
 						rep(`bạn đã mua ${a.item} * ${a.amount}`)
-					}else {	rep(`bạn không đủ tiền, số tiền còn thiếu: ${a.price -= xu[message.senderID]} xu`) }
+					}else {	rep(`bạn không đủ tiền, số tiền còn thiếu: ${a.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 13212:
 					if (xu[message.senderID] > b.price) {
 						xu[message.senderID] -= (b.price);
 						bag["id13212"] += b.amount;
 						rep(`bạn đã mua ${b.item} * ${b.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${b.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${b.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 13411:
 					if (xu[message.senderID] > c.price) {
 						xu[message.senderID] -= (c.price);
 						bag["id13411"] += c.amount;
 						rep(`bạn đã mua ${c.item} * ${c.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${c.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${c.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 4011:
 					if (bag["id4011"] >= 1) {
@@ -135,7 +135,7 @@ module.exports = {
 						bag["id4011"] += d1.amount;
 						use[message.senderID].equip["do_ben_ao1"] = d1["eff"].limit;
 						rep(`bạn đã mua ${d1.item} * ${d1.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d1.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d1.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 4012:
 					if (bag["id4012"] >= 1) {
@@ -145,7 +145,7 @@ module.exports = {
 						bag["id4012"] += d2.amount;
 						use[message.senderID].equip["do_ben_ao2"] = d2["eff"].limit;
 						rep(`bạn đã mua ${d2.item} * ${d2.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d2.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d2.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 4013:
 					if (bag["id4013"] >= 1) {
@@ -155,7 +155,7 @@ module.exports = {
 						bag["id4013"] += d3.amount;
 						use[message.senderID].equip["do_ben_ao3"] = d3["eff"].limit;
 						rep(`bạn đã mua ${d3.item} * ${d3.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d3.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${d3.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 1111:
 					if (bag["id1111"] >= 1) {
@@ -165,7 +165,7 @@ module.exports = {
 						bag["id1111"] += e1.amount;
 						use[message.senderID].equip["do_ben_mu1"] = e1["eff"].limit;
 						rep(`bạn đã mua ${e1.item} * ${e1.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e1.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e1.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 1112:
 					if (bag["id1112"] >= 1) {
@@ -175,7 +175,7 @@ module.exports = {
 						bag["id1112"] += e2.amount;
 						use[message.senderID].equip["do_ben_mu2"] = e2["eff"].limit;
 						rep(`bạn đã mua ${e2.item} * ${e2.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e2.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e2.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 1113:
 					if (bag["id1113"] >= 1) {
@@ -185,14 +185,14 @@ module.exports = {
 						bag["id1113"] += e3.amount;
 						use[message.senderID].equip["do_ben_mu3"] = e3["eff"].limit;
 						rep(`bạn đã mua ${e3.item} * ${e3.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e3.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${e3.price -= xu[message.senderID]} 💵`) }
 					break;
 					case 7131:
 					if (xu[message.senderID] > f.price) {
 						xu[message.senderID] -= (f.price);
 						bag["id7131"] += f.amount;
 						rep(`bạn đã mua ${f.item} * ${f.amount}`)
-					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${f.price -= xu[message.senderID]} xu`) }
+					}else { rep(`bạn không đủ tiền, số tiền còn thiếu: ${f.price -= xu[message.senderID]} 💵`) }
 					break;
 					default:
 					break	
@@ -287,7 +287,7 @@ module.exports = {
 				check_amor(1111, "do_ben_mu1");
 				check_amor(1112, "do_ben_mu2");
 				check_amor(1113, "do_ben_mu3");
-					let msg = `túi đồ của bạn có ${xu[message.senderID]} xu 💰\n`;
+					let msg = `túi đồ của bạn có ${xu[message.senderID]} 💵\n`;
 
 					if (bag["id5414"] > 0) { msg += `${data.id5414.item} * ${bag["id5414"]}\n` };
 					if (bag["id13212"] > 0) { msg += `${data.id13212.item} * ${bag["id13212"]} 🧰\n` };
@@ -310,16 +310,16 @@ module.exports = {
 				check_amor(1112, "do_ben_mu2");
 				check_amor(1113, "do_ben_mu3");
 				let msg = `===STORE ⭐===\n`;
-					msg += `id 5414 (${data.id5414.item}) giá ${data.id5414.price} xu\n`;
-					msg += `id 13212 (${data.id13212.item}) giá ${data.id13212.price} xu\n`;
-					msg += `id 13411 (${data.id13411.item}) giá ${data.id13411.price} xu\n`;
-					msg += `id 4011 (${data.id4011.item}) giá ${data.id4011.price} xu\n`;
-					msg += `id 4012 (${data.id4012.item}) giá ${data.id4012.price} xu\n`;
-					msg += `id 4013 (${data.id4013.item}) giá ${data.id4013.price} xu\n`;
-					msg += `id 1111 (${data.id1111.item}) giá ${data.id1111.price} xu\n`;
-					msg += `id 1112 (${data.id1112.item}) giá ${data.id1112.price} xu\n`;
-					msg += `id 1113 (${data.id1113.item}) giá ${data.id1113.price} xu\n`;
-					msg += `id 7131 (${data.id7131.item}) giá ${data.id7131.price} xu`;
+					msg += `id 5414 (${data.id5414.item}) giá ${data.id5414.price} 💵\n`;
+					msg += `id 13212 (${data.id13212.item}) giá ${data.id13212.price} 💵\n`;
+					msg += `id 13411 (${data.id13411.item}) giá ${data.id13411.price} 💵\n`;
+					msg += `id 4011 (${data.id4011.item}) giá ${data.id4011.price} 💵\n`;
+					msg += `id 4012 (${data.id4012.item}) giá ${data.id4012.price} 💵\n`;
+					msg += `id 4013 (${data.id4013.item}) giá ${data.id4013.price} 💵\n`;
+					msg += `id 1111 (${data.id1111.item}) giá ${data.id1111.price} 💵\n`;
+					msg += `id 1112 (${data.id1112.item}) giá ${data.id1112.price} 💵\n`;
+					msg += `id 1113 (${data.id1113.item}) giá ${data.id1113.price} 💵\n`;
+					msg += `id 7131 (${data.id7131.item}) giá ${data.id7131.price} 💵`;
 				rep(msg)
 			}
 		}

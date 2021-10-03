@@ -26,9 +26,11 @@ const childs = [
 	'eco/work',
 	'eco/slut',
 	'eco/crime',
+	'eco/fishing',
 	'console',
 	'func',
 	'unsend',
+	'uptime',
 	'noprefix/thathinh',
 	'noprefix/aothatday',
 	'noprefix/botngu',
@@ -41,12 +43,12 @@ const childs = [
 	'noprefix/hao',
 	'noprefix/banlanhat',
 	'noprefix/he',
+	'noprefix/oibanoi',
 	'noprefix/thunglung',
 	'noprefix/uwu',
 	'noprefix/congiap',
-	'noprefix/oibanoi'
+	'noprefix/DAT'
 ];
-
 module.exports = {
 	keywords: ['ℂ𝕀𝕋ℕ𝕌𝕋', 'CITNUT', 'citnut'],
 
@@ -72,12 +74,12 @@ module.exports = {
 			local: {}
 		}
 	},
-
 	async onLoad() {},
 
 	hookType: 'none',
 
 	async onMessage(message, reply) {
+		
 	},
 
 	async onCall(message, reply) {

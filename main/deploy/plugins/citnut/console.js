@@ -5,6 +5,8 @@ const colors = require("colors");
 const mytheme = "mirai";
 /* theme is kb2a, c3c, mirai or custom */
 ////edit here////
+
+let msg = `===⭐CITNUT⭐===\nbạn đang sử dụng giao diện ${mytheme}\n~~~\nbạn có thể thay đổi giao diện trong tệp console.js\n\nđể làm mới giữ liệu chống get hãy reply tin nhắn này bằng số 1\n===KB2ABOT===`;
 module.exports = {
 	name: ":3",
 	keywords:["log"],
@@ -29,10 +31,34 @@ module.exports = {
 	async onMessage(message, reply) {
 		let theme = this.storage.account.global.consoleTheme;
 		let prefix = this.storage.thread.global.prefix;
-		let uinfo = await getUserInfo(message.senderID);
-		let binfo = await getThreadInfo(message.threadID);
-		let name = uinfo[`${message.senderID}`].name;
-		let thread = binfo.name;
+		if (!this.storage.account.global.console) { this.storage.account.global.console = {} };
+		if (!this.storage.account.global.console[message.senderID]) {
+			let user = await getUserInfo(message.senderID);
+			this.storage.account.global.console[message.senderID] = user[message.senderID].name;
+		};
+		if (!this.storage.account.global.console[message.threadID]) {
+			let thread = await getThreadInfo(message.threadID);
+			this.storage.account.global.console[message.threadID] = thread.name
+		};
+		if (!this.storage.account.global.console.bot) {
+			let id = await fca.getCurrentUserID();
+			let bot = await getUserInfo(id);
+			this.storage.account.global.console.bot = { id: id, bot: bot[id]}
+		};
+		if (message.type == "message_reply" && !this.storage.account.global.console[message.messageReply.senderID]) {
+			let user_ = await getUserInfo(message.messageReply.senderID);
+			this.storage.account.global.console[message.messageReply.senderID] = user_[message.messageReply.senderID].name;
+		};
+
+		if (message.type == "message_reply" && message.messageReply.body == msg) {
+			if (message.body == "1") {
+				this.storage.account.global.console = {};
+				return reply(`đã làm mới dữ liệu thành công\nTIP: bạn nên làm mới dữ liệu mỗi ngày một lần`)
+			}
+		};
+		
+		let name = this.storage.account.global.console[message.senderID];
+		let thread = this.storage.account.global.console[message.threadID];
 		let box = (message.senderID == message.threadID) ? "DMed: " : `messaged in thread ${message.threadID}: `;
 		let boxk = (message.senderID == message.threadID) ? "DMed: " : `đã gửi tin nhắn đến ${thread} nội dung: `;
 
@@ -69,6 +95,8 @@ module.exports = {
 		    };
 		    return str
 		};
+		let botID = this.storage.account.global.console.bot.id;
+		//console.log(`bot ${botID}`);
 		if (theme == "kb2a") {
 			let kb = " ";
 			if (message.attachments[0]) { kb = " < tệp đính kèm >" };
@@ -83,7 +111,7 @@ module.exports = {
 				case "event":
 	        try {
 	          if (message.logMessageType == "log:subscribe") {
-	          	let botID = fca.getCurrentUserID();
+	          	//let botID = fca.getCurrentUserID();
 	            for (let n in message.logMessageData.addedParticipants) {
 	            	if (message.logMessageData.addedParticipants[n].userFbId == botID) {
 	            		console.newLogger.done(`${message.author} đã thêm Bot vào ${thread}`);
@@ -102,8 +130,7 @@ module.exports = {
 		      console.newLogger.done(`${name} đã xóa một tin nhắn tại ${thread}. (${message.messageID})`);
 		    break;
 		    case "message_reply":
-		    	let rinfo = await getUserInfo(message.messageReply.senderID);
-		    	let rname = rinfo[`${message.messageReply.senderID}`].name; 	
+		    	let rname = this.storage.account.global.console[message.messageReply.senderID]; 	
 		      console.newLogger.done(`${name} đã trả lời ${rname} tại ${thread}: ${message.body}${kb}`)
 		    break;
 		    default:
@@ -125,7 +152,7 @@ module.exports = {
 				case "event":
 	        try {
 	          if (message.logMessageType == "log:subscribe") {
-	          	let botID = fca.getCurrentUserID();
+	          	//let botID = fca.getCurrentUserID();
 	            for (let n in message.logMessageData.addedParticipants) {
 	            	if (message.logMessageData.addedParticipants[n].userFbId == botID) {
 	            		console.log(`${message.author} added Bot to ${message.threadID}(${thread})`.green);
@@ -155,8 +182,7 @@ module.exports = {
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
 				}else {
-					uinfo = await getUserInfo(message.threadID);
-					name = uinfo[`${message.threadID}`].name;
+					name = this.storage.account.global.console[message.threadID].name;
 					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
 					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
 				}
@@ -164,8 +190,7 @@ module.exports = {
 				if (message.isGroup) {
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
 				}else {
-					uinfo = await getUserInfo(message.threadID);
-					name = uinfo[`${message.threadID}`].name;
+					name = this.storage.account.global.console[message.threadID].name;
 					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
 				}
 			}
@@ -175,6 +200,6 @@ module.exports = {
 		}
 	},
 	async onCall(message, reply) {
-		reply(`===⭐CITNUT⭐===\nbạn đang sử dụng giao diện ${mytheme}\n~~~\nbạn có thể thay đổi giao diện trong tệp console.js\n===KB2ABOT===`)
+		reply(msg)
 	}
 }

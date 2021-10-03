@@ -65,7 +65,7 @@ module.exports = {
 		if (storage.use[message.senderID].equip["do_ben_mu2"] < 0) { storage.use[message.senderID].equip["do_ben_mu2"] = 0 };
 		if (storage.use[message.senderID].equip["do_ben_ao3"] < 0) { storage.use[message.senderID].equip["do_ben_ao3"] = 0 };
 		if (storage.use[message.senderID].equip["do_ben_mu3"] < 0) { storage.use[message.senderID].equip["do_ben_mu3"] = 0 };
-		if (storage.use[message.senderID].truyna) { storage.use[message.senderID].truyna = 0 };
+		//if (storage.use[message.senderID].truyna) { storage.use[message.senderID].truyna = 0 };
 		//if (!storage.use[message.senderID].victim) { storage.use[message.senderID].victim = {} };
 		if (!storage.trade_data) { storage.trade_data = {} };
 		if (!storage.trade_data[message.senderID]) { storage.trade_data[message.senderID] = {} };
@@ -139,7 +139,7 @@ module.exports = {
 			let item5 = { "1": res.data.id1111, "2": res.data.id1112, "3": res.data.id1113 };
 			let item6 = res.data.id7131;
 
-			async function rep(msg) { fca.sendMessage(msg, message.threadID, message.messageID) };
+			async function rep(msg) { reply(msg) };
 			async function check_amor(amor, _db_) {
 				if (storage.trade_data.bag[`id${amor}`] <= 0) { 
 					storage.use[message.senderID].equip[_db_] = 0
@@ -220,7 +220,7 @@ module.exports = {
 											storage.use[victim].equip["ao"] = "chưa có";
 											storage.use[victim].amor["ao"] = 0;
 											storage.trade_data[victim].bag["id4011"] = 0;
-											fca.sendMessage({ body: `${item4["1"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item4["1"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 									if (storage.use[victim].amor["ao"] == item4["2"]["eff"].input) {
@@ -230,7 +230,7 @@ module.exports = {
 											storage.use[victim].equip["ao"] = "chưa có";
 											storage.use[victim].amor["ao"] = 0;
 											storage.trade_data[victim].bag["id4012"] = 0;
-											fca.sendMessage({ body: `${item4["2"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item4["2"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 									if (storage.use[victim].amor["ao"] == item4["3"]["eff"].input) {
@@ -240,7 +240,7 @@ module.exports = {
 											storage.use[victim].equip["ao"] = "chưa có";
 											storage.use[victim].amor["ao"] = 0;
 											storage.trade_data[victim].bag["id4013"] = 0;
-											fca.sendMessage({ body: `${item4["3"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item4["3"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 									if (storage.use[victim].amor["mu"] == item5["1"]["eff"].input) {
@@ -250,7 +250,7 @@ module.exports = {
 											storage.use[victim].equip["mu"] = "chưa có";
 											storage.trade_data[victim].bag["id1111"] = 0;
 											storage.use[victim].amor["mu"] = 0;
-											fca.sendMessage({ body: `${item5["1"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item5["1"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 									if (storage.use[victim].amor["mu"] == item5["2"]["eff"].input) {
@@ -260,7 +260,7 @@ module.exports = {
 											storage.use[victim].equip["mu"] = "chưa có";
 											storage.use[victim].amor["mu"] = 0;
 											storage.trade_data[victim].bag["id1112"] = 0;
-											fca.sendMessage({ body: `${item5["2"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item5["2"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 									if (storage.use[victim].amor["mu"] == item5["3"]["eff"].input) {
@@ -270,7 +270,7 @@ module.exports = {
 											storage.use[victim].equip["mu"] = "chưa có";
 											storage.use[victim].amor["mu"] = 0;
 											storage.trade_data[victim].bag["id1113"] = 0;
-											fca.sendMessage({ body: `${item5["3"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
+											reply({ body: `${item5["3"].item} của ${name} đã bị hỏng`, mentions: [{ tag: name, id: c }] })
 										}
 									};
 
@@ -281,7 +281,7 @@ module.exports = {
 										thread.respawn[victim] = time.getTime();
 										thread.HP[victim] = 0;
 										rep(`${end[round(random(0, 6), 0)]}`);
-										storage.use[message.senderID].truyna += 1
+										//storage.use[message.senderID].truyna += 1
 										//storage.use[message.senderID].victim[victim] = 0
 									}
 								}else { rep(`bạn không có ${item1.item}`) }
