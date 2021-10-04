@@ -39,6 +39,7 @@ module.exports = {
 	},
 
 	async onCall(message, reply) {
+		let setting = this.storage.account.global.citSetting;
 		if (setting.run.boy != true) {
 			return reply("plugin này đã bị tắt")
 		}else {
