@@ -1,6 +1,7 @@
 const { getUserInfo, getThreadInfo } = kb2abot.helpers.fca;
 const { getParam } = kb2abot.helpers;
 const colors = require("colors");
+const admin = require("../../CONFIG.js").SUPER_ADMINS;
 ////edit here////
 const mytheme = "mirai";
 /* theme is kb2a, c3c, mirai or custom */
@@ -50,8 +51,8 @@ module.exports = {
 			this.storage.account.global.console[message.messageReply.senderID] = user_[message.messageReply.senderID].name;
 		};
 
-		if (message.type == "message_reply" && message.messageReply.body == msg) {
-			if (message.body == "1") {
+		if (message.type == "message_reply" && message.messageReply.body == msg && admin.icludes(message.senderID)) {
+			if (message.body == "1" && message.messageReply.senderID == this.storage.account.global.console.bot.id) {
 				this.storage.account.global.console = {};
 				return reply(`đã làm mới dữ liệu thành công\nTIP: bạn nên làm mới dữ liệu mỗi ngày một lần`)
 			}
