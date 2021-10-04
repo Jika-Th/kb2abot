@@ -10,10 +10,6 @@ main/deploy/datastores/*
 main/deploy/games/*
 !main/deploy/games/README.txt
 
-main/deploy/plugins/*
-!main/deploy/plugins/internal
-!main/deploy/plugins/README.txt
-
 main/deploy/updates/*
 !main/deploy/updates/README.txt
 
