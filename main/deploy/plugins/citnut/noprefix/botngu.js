@@ -34,7 +34,7 @@ module.exports = {
 		if (setting.autorun != true || message.senderID == fca.getCurrentUserID()) {
 		}else if (message.body.toLowerCase().indexOf("bot ngu") == 0 || message.body.toLowerCase().indexOf("bot cc") == 0) {
 			fca.sendMessage({
-				body: "Ngu cái đb nhà mày à ?",
+				body: "bot là siêu vip, là số 1 ok!",
 				attachment: getFile("./main/deploy/plugins/citnut/data/noprefix/botngu.jpg")
 			}, message.threadID, message.messageID)
 		}

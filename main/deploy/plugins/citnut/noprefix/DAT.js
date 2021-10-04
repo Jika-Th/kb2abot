@@ -1,10 +1,12 @@
 const { getFile } = kb2abot.helpers;
+let att = [getFile("./main/deploy/plugins/citnut/data/noprefix/NHD.jpg"), getFile("./main/deploy/plugins/citnut/data/noprefix/NHDa.jpg")];
+
 module.exports = {
-	keywords: ["byebye", "vĩnhbiệt"],
+	keywords: ["dat", "đạt", "DAT", "Đạt"],
 
-	name: 'xin... vĩnh biệt cụ',
+	name: 'đạt :))',
 
-	description: 'plugin do Trương Đăng Dương cùng Citnut làm đó',
+	description: 'một plugin cực dảk',
 
 	guide: '',
 
@@ -32,23 +34,17 @@ module.exports = {
 	async onMessage(message, reply) {
 		let setting = this.storage.account.global.citSetting;
 		if (setting.autorun != true || message.senderID == fca.getCurrentUserID()) {
-		}else if (message.body.toLowerCase().includes("vĩnh biệt")) {
-			fca.sendMessage({
-				body: "xin... vĩnh biệt cụ",
-				attachment: getFile("./main/deploy/plugins/citnut/data/noprefix/xinvinhbietcu.mp4")
-			}, message.threadID, message.messageID)
+		}else if (message.body.indexOf("đạt") == 0) {
+			fca.sendMessage({attachment: att[Math.floor(Math.random() * parseInt(att.length))]}, message.threadID, message.messageID)
 		}
 	},
 
 	async onCall(message, reply) {
 		let setting = this.storage.account.global.citSetting;
-		if (setting.run.bye != true) {
+		if (setting.run.dat != true) {
 			fca.sendMessage("plugin này đã bị tắt", message.threadID, message.messageID)
 		}else {
-			fca.sendMessage({
-				body: "xin... vĩnh biệt cụ",
-				attachment: getFile("./main/deploy/plugins/citnut/data/noprefix/xinvinhbietcu.mp4")
-			}, message.threadID, message.messageID)
+			fca.sendMessage({attachment: att[Math.floor(Math.random() * parseInt(att.length))]}, message.threadID, message.messageID)
 		};
 	}
 };
