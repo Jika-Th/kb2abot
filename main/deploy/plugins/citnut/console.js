@@ -130,8 +130,12 @@ module.exports = {
 		      console.newLogger.done(`${name} đã xóa một tin nhắn tại ${thread}. (${message.messageID})`);
 		    break;
 		    case "message_reply":
-		    	let rname = this.storage.account.global.console[message.messageReply.senderID]; 	
-		      console.newLogger.done(`${name} đã trả lời ${rname} tại ${thread}: ${message.body}${kb}`)
+		    	let rname = "null";
+		    	try {
+		    		rname = this.storage.account.global.console[message.messageReply.senderID]; 	
+		    	} catch (e) {
+		     		console.log(`${name} đã trả lời ${rname} tại ${thread}: ${message.body}${kb}`.green)
+		    	}
 		    break;
 		    default:
 		    break
@@ -182,16 +186,25 @@ module.exports = {
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
 				}else {
-					name = this.storage.account.global.console[message.threadID].name;
-					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
-					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
+					try {
+						name = this.storage.account.global.console[message.threadID].name;
+						console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
+						console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
+					} catch (e) {
+						console.log(`BOX: `.green + `null`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`);
+						console.log(`BOX: `.green + `null`.magenta + `|`.red + `${name}`.yellow + `|`.red + `đã gửi một tệp đính kèm`)
+					}
 				}
 			}else {
 				if (message.isGroup) {
 					console.log(`BOX: `.green + `${thread}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
 				}else {
-					name = this.storage.account.global.console[message.threadID].name;
-					console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
+					try {
+						name = this.storage.account.global.console[message.threadID].name;
+						console.log(`BOX: `.green + `${name}`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
+					} catch (e) {
+						console.log(`BOX: `.green + `null`.magenta + `|`.red + `${name}`.yellow + `|`.red + `${message.body}`)
+					}
 				}
 			}
 		}else {
