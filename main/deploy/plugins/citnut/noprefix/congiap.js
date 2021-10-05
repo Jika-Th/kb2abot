@@ -25,7 +25,7 @@ module.exports = {
 		if (message.type != "message_reply") return;
 		//let message = await handleReply(message);
 
-		if (!setting.run.congiap) return reply("lệnh này đã bị tắt");
+		if (!setting.autorun) return;
 		if (message.type != "message_reply") return;
 		if (message.messageReply.body == citnut && message.messageReply.senderID == this.storage.account.global.console.bot.id) {
 			switch(message.body){
