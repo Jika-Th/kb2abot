@@ -1,6 +1,6 @@
 const { getFile } = kb2abot.helpers;
 module.exports = {
-	keywords: ["hacker", "hack", "hắc", "hackẻ"],
+	keywords: ["hacker", "hack", "hắc", "hackẻ", "hacku"],
 
 	name: 'hacker VN pro vip',
 
@@ -45,7 +45,8 @@ module.exports = {
 		if (setting.run.hacker != true) {
 			return reply("plugin này đã bị tắt")
 		}else {
-			fca.sendMessage({body: "hacker :)))", attachment: getFile("./main/deploy/plugins/citnut/data/hacker.mp4")}, message.threadID, message.messageID)
+			let att = [getFile("./main/deploy/plugins/citnut/data/hacker.mp4"), getFile("./main/deploy/plugins/citnut/data/hacku.mp4")];
+			fca.sendMessage({body: "hacker :)))", attachment: att[Math.floor(Math.random() * parseInt(att.length))]}, message.threadID, message.messageID)
 		}
 		// Được gọi khi có member xài lệnh plugin này
 		// Là cốt lõi của plugin không có phần này thì có nghĩa sẽ không có chuyện

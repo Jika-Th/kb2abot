@@ -1,5 +1,4 @@
 {
-	"autorun": true,
 	"run": {
 		"gai": true,
 		"boy": true,
@@ -16,7 +15,7 @@
 		"voice": true,
 		"trungthu": true,
 		"item": true,
-		"setbag": true,
+		"setmoney": true,
 		"slot": true,
 		"trade": true,
 		"work": true,

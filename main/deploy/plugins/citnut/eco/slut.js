@@ -33,15 +33,17 @@ module.exports = {
 	async onLoad() {
 	},
 	async onMessage(message, reply) {
-		const storage = this.storage.account.global;
+		let storage = this.storage.account.global;
 
-		if (!storage.xu) { storage.xu = {} };
+		if (!storage.eco) { storage.eco = {} };
 
 		if (!storage.cooldown) { storage.cooldown = {} };
 
 		if (!storage.cooldown.slut) { storage.cooldown.slut = {} };
 
-		if (!storage.xu[message.senderID]) { storage.xu[message.senderID] = 0 };
+		if (!storage.eco[message.senderID]) { storage.eco[message.senderID] = {} };
+
+		if (!storage.eco[message.senderID].money) { storage.eco[message.senderID].money = 0 };
 
 		if (!storage.cooldown.slut[message.senderID]) { storage.cooldown.slut[message.senderID] = 0 }
 	},
@@ -51,25 +53,21 @@ module.exports = {
 		if (setting.run.slut != true) {
 			return reply("plugin này đã bị tắt")
 		}else {
-			const storage = this.storage.account.global;
+			let storage = this.storage.account.global;
 			let slut = storage.cooldown.slut;
 
-			function rep (msg) {
-				fca.sendMessage(msg, message.threadID, message.messageID)
-			};
-
 			const time = new Date;
-			const res = await axios.get(`https://raw.githubusercontent.com/Citnut/Citnut/main/KB2ABotECOConfig.json`)
+			const res = await axios.get(`https://raw.githubusercontent.com/Citnut/Citnut/main/KB2ABotECOConfig.json`);
 
 			const data = res.data;
 			if (time.getTime() < slut[message.senderID] + (data.cooldown.slut * 1000)) {
 				let cooldown = (slut[message.senderID] + (data.cooldown.slut * 1000)) - time.getTime();
-				rep(`vui lòng đợi ${round((cooldown/1000), 0)} giây để tiếp tục`)
+				reply(`vui lòng đợi ${round((cooldown/1000), 0)} giây để tiếp tục`)
 			}else {
 				slut[message.senderID] = time.getTime();
 				let payout = round(random(data.slut.min, data.slut.max), 0);
-				storage.xu[message.senderID] += payout;
-				rep(`| +${payout} 💵 | ví của bạn có: ${storage.xu[message.senderID]} 💵`)
+				storage.eco[message.senderID].money += payout;
+				reply(`| +${payout} 💵 | ví của bạn có: ${storage.eco[message.senderID].money} 💵`)
 			}
 		}
 	}
