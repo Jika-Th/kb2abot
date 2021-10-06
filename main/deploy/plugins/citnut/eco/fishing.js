@@ -69,11 +69,11 @@ module.exports = {
 		if (message.type != "message_reply" || isNaN(message.body)) return;
 		const { body, senderID, messageReply } = message;
 		let stg = this.storage.account.global,
-			prefix = this.storage.thread.global.prefix,
-			money = this.storage.account.global.eco[senderID].money;
+			prefix = this.storage.thread.global.prefix;
+			//money = this.storage.account.global.eco[senderID].money;
 		if (!this.storage.account.global.fishing_) { this.storage.account.global.fishing_ = {} };
 		if (!this.storage.account.global.fishing_[senderID]) { this.storage.account.global.fishing_[senderID] = {} };
-		if (!this.storage.account.global.fishing_[senderID].register) return;
+		
 		let data = this.storage.account.global.console;
 		let menuShop = [];
 		for (let i = 0; i < listItem.length; i++) {
@@ -87,7 +87,7 @@ module.exports = {
 		if (messageReply.senderID != data.bot.id) return;
 		if (!Object.values(msg).includes(messageReply.body) && !Object.values(msga).includes(messageReply.body)) return;
 		let name = data[message.senderID].toUpperCase();
-		
+		if (!this.storage.account.global.fishing_[senderID].register) return reply(`bạn chưa đăng kí tham gia trò chơi!`);
 		switch (messageReply.body) {
 			case msg.shop:
 				switch (body) {
@@ -107,8 +107,8 @@ module.exports = {
 	                            };
 	                            index++
 							};
-							money += total;
-							return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: +${total}💵\n💳 nội dung: ${name} BÁN CÁ\n💳 số dư chính: ${money}💵`)
+							this.storage.account.global.eco[senderID].money += total;
+							return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: +${total}💵\n💳 nội dung: ${name} BÁN CÁ\n💳 số dư chính: ${this.storage.account.global.eco[senderID].money}💵`)
 						} catch (e) {
 							console.error(e);
 							return reply(`đã xảy ra lỗi`)
@@ -148,14 +148,14 @@ module.exports = {
 				try {
 					if (body > listItem.length || body < 1) { return reply(`lựa chọn của bạn không tồn tại!`) };
 					let choose = listItem[parseInt(body) - 1];
-					if (money < choose.price) { return reply(`bạn không đủ tiền để mua nó\n\nbạn còn thiếu: ${choose.price - money}💵`) };
+					if (this.storage.account.global.eco[senderID].money < choose.price) { return reply(`bạn không đủ tiền để mua nó\n\nbạn còn thiếu: ${choose.price - this.storage.account.global.eco[senderID].money}💵`) };
 					this.storage.account.global.fishing_[senderID].fishingrod.name = choose.name;
 					this.storage.account.global.fishing_[senderID].fishingrod.time = choose.time;
 					this.storage.account.global.fishing_[senderID].fishingrod.durability = choose.durability;
 					this.storage.account.global.fishing_[senderID].fishingrod.needfix = choose.fix;
 					this.storage.account.global.fishing_[senderID].fishingrod.fix = choose.price / 2;
-					money -= choose.price;
-					return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: -${choose.price}💵\n💳 nội dung: ${name} MUA ${choose.name.toUpperCase()}\n💳 số dư chính: ${money}💵`)
+					this.storage.account.global.eco[senderID].money -= choose.price;
+					return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: -${choose.price}💵\n💳 nội dung: ${name} MUA ${choose.name.toUpperCase()}\n💳 số dư chính: ${this.storage.account.global.eco[senderID].money}💵`)
 				} catch (e) {
 					console.error(e);
 					return reply(`đã xảy ra lỗi`)
@@ -168,9 +168,9 @@ module.exports = {
 					break;
 					case "2":
 						if (this.storage.account.global.fishing_[senderID].fishingrod.durability > this.storage.account.global.fishing_[senderID].fishingrod.needfix) { return reply(`cần câu của bạn chưa cần sửa chữa`) };
-						if (money < this.storage.account.global.fishing_[senderID].fishingrod.fix) { return reply(`bạn không đủ tiền để sửa cần câu\n\nbạn còn thiếu: ${this.storage.account.global.fishing_[senderID].fishingrod.fix - money}💵`) };
+						if (this.storage.account.global.eco[senderID].money < this.storage.account.global.fishing_[senderID].fishingrod.fix) { return reply(`bạn không đủ tiền để sửa cần câu\n\nbạn còn thiếu: ${this.storage.account.global.fishing_[senderID].fishingrod.fix - money}💵`) };
 						this.storage.account.global.fishing_[senderID].fishingrod.durability = this.storage.account.global.fishing_[senderID].fishingrod.needfix*2;
-						money -= this.storage.account.global.fishing_[senderID].fishingrod.fix;
+						this.storage.account.global.eco[senderID].money -= this.storage.account.global.fishing_[senderID].fishingrod.fix;
 						return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: -${this.storage.account.global.fishing_[senderID].fishingrod.fix}💵\n💳 nội dung: ${name} SỬA CẦN CÂU\n💳 số dư chính: ${money}💵`)
 					break;
 					default:
@@ -181,7 +181,7 @@ module.exports = {
 			case msga.bag:
 				if (body < 0) { return reply(`lựa chọn của bạn không phải là một số âm!`) };
 				const updatePrice = parseInt(body)*2000;
-				let cost = money - updatePrice;
+				let cost = this.storage.account.global.eco[senderID].money - updatePrice;
 				if (cost < 0) { return reply(`bạn không đủ tiền\n\nbạn còn thiếu: ${cost*-1}💵`)};
 				for (let i = 0; i < parseInt(body) - 1; i++) {
 					this.storage.account.global.fishing_[senderID].inventory.push({
@@ -190,8 +190,8 @@ module.exports = {
 					    price: 0
 					})
 				};
-				money = cost;
-				return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: -${updatePrice}💵\n💳 nội dung: ${name} NÂNG CẤP TÚI ĐỒ\n💳 số dư chính: ${money}💵`)
+				this.storage.account.global.eco[senderID].money = cost;
+				return reply(`💳 số tài khoản: ${senderID}\n💳 giao dịch: -${updatePrice}💵\n💳 nội dung: ${name} NÂNG CẤP TÚI ĐỒ\n💳 số dư chính: ${this.storage.account.global.eco[senderID].money}💵`)
 			break;
 			default:
 			break
