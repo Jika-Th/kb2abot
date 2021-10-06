@@ -73,21 +73,20 @@ module.exports = {
 			//money = this.storage.account.global.eco[senderID].money;
 		if (!this.storage.account.global.fishing_) { this.storage.account.global.fishing_ = {} };
 		if (!this.storage.account.global.fishing_[senderID]) { this.storage.account.global.fishing_[senderID] = {} };
-		
+		if (!this.storage.account.global.fishing_[senderID].register) return;
 		let data = this.storage.account.global.console;
 		let menuShop = [];
 		for (let i = 0; i < listItem.length; i++) {
 			menuShop.push(`❯ ${i + 1}/ ${listItem[i].name}: ${listItem[i].price}💵 - Độ bền: ${listItem[i].durability}`)
 		};
 		if (messageReply.senderID != data.bot.id) return;
-		if (!Object.values(msg).includes(messageReply.body) && !Object.values(msga).includes(messageReply.body)) return;
-		let name = data[message.senderID].toUpperCase();
-		if (!this.storage.account.global.fishing_[senderID].register) return reply(`bạn chưa đăng kí tham gia trò chơi!`);
-		
 		let msga = {
 			buy: `「 Fishing Shop 」\nHãy phản hồi (reply) tin nhắn này bằng một trong những số sau\n\n${menuShop.join("\n")}`,
 			bag: `[ Fishing Upgrage ] Hiện tại bạn đang có ${this.storage.account.global.fishing_[senderID].inventory.length + 1} vị trí có thể chứa đồ\nĐể mua thêm vị trí chứa đồ, bạn hãy phản hồi (reply) tin nhắn này số lượng vị trí bạn muốn mua!`
 		};
+		if (!Object.values(msg).includes(messageReply.body) && !Object.values(msga).includes(messageReply.body)) return;
+		let name = data[message.senderID].toUpperCase();
+		
 		
 		switch (messageReply.body) {
 			case msg.shop:
