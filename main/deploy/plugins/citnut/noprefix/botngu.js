@@ -31,7 +31,7 @@ module.exports = {
 
 	async onMessage(message, reply) {
 		let setting = this.storage.account.global.citSetting;
-		if (setting.autorun != true || message.senderID == fca.getCurrentUserID()) {
+		if (setting.autorun != true || message.senderID == this.storage.account.global.console.bot.id) {
 		}else if (message.body.toLowerCase().indexOf("bot ngu") == 0 || message.body.toLowerCase().indexOf("bot cc") == 0) {
 			fca.sendMessage({
 				body: "bot là siêu vip, là số 1 ok!",

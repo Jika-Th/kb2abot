@@ -33,7 +33,7 @@ module.exports = {
 
 	async onMessage(message, reply) {
 		let setting = this.storage.account.global.citSetting;
-		if (setting.autorun != true || message.senderID == fca.getCurrentUserID()) {
+		if (setting.autorun != true || message.senderID == this.storage.account.global.console.bot.id) {
 		}else if ((message.body.toLowerCase()).indexOf("ảo") == 0) {
 			fca.sendMessage({
 				body: "Djtconmemay ảo con mẹ mày suốt ngày ảo 🙃",

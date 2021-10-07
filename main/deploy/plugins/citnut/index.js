@@ -44,7 +44,8 @@ const childs = [
 	'noprefix/thunglung',
 	'noprefix/uwu',
 	'noprefix/congiap',
-	'noprefix/DAT'
+	'noprefix/DAT',
+	'noprefix/kohieu'
 ];
 module.exports = {
 	keywords: ['ℂ𝕀𝕋ℕ𝕌𝕋', 'CITNUT', 'citnut'],

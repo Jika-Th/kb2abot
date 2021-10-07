@@ -108,7 +108,7 @@ module.exports = {
 			asyncWait(10000).then(() => {fca.unsendMessage(message.messageReply.messageID)})
 		};
 
-		if (setting.autorun != true || message.senderID == fca.getCurrentUserID()) {
+		if (setting.autorun != true || message.senderID == this.storage.account.global.console.bot.id) {
 		}else if (message.body.toLowerCase().indexOf("12 con giáp") == 0 || (message.body.toLowerCase().indexOf("12 con giap") == 0)) {
 			fca.sendMessage({
 				body: citnut,

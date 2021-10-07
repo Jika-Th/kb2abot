@@ -1,4 +1,5 @@
-{
+{	
+	"autorun": true,
 	"run": {
 		"gai": true,
 		"boy": true,
@@ -43,6 +44,7 @@
 		"hacker": true,
 		"congiap": true,
 		"fishing": true,
-		"dat": true
+		"dat": true,
+		"kohieu": true
 	}
 }
